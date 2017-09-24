@@ -1,0 +1,4 @@
+r.table('authors').orderBy('born')
+r.table('authors').filter({name: 'Grant Gustin'})
+r.table('authors').get('508e9753-a379-49b1-95e1-0222bc106c42')
+r.table('authors')
