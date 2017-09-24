@@ -1,0 +1,3 @@
+ansible all -m ping -i inventory -u vagrant --private-key .vagrant/machines/default/virtualbox/private_key
+
+ansible-playbook -i inventory playbook.yml -u vagrant --private-key .vagrant/machines/default/virtualbox/private_key
