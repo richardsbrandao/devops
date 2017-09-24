@@ -1,0 +1,6 @@
+docker plugin install vieux/sshfs
+docker plugin ls
+docker volume ls
+docker volume create -d vieux/sshfs --name sshvolume -o sshcmd=vagrant@192.168.33.23:/home/vagrant/volumeremotetest -o password=vagrant
+docker volume ls
+docker run --rm -v sshvolume:/data busybox ls /data
