@@ -1,0 +1,1 @@
+docker logs simpleapi_${1:-8080} | grep 'Receiving request' | wc -l
