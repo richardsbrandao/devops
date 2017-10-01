@@ -1,7 +1,20 @@
 var express = require('express')
+var path = require("path")
 var app = express()
 var ip = require('ip')
 var os = require('os')
+
+app.use(function (req, res, next) {
+    var filename = path.basename(req.url)
+    var extension = path.extname(filename)
+
+    if (extension === '.txt' || extension === '.jpg')
+        console.log("The file " + filename + " was requested.")
+    
+    next()
+})
+
+app.use(express.static('public'))
 
 app.get('/', function (req, res) {
 	console.log('Receiving request: GET /')
@@ -15,6 +28,7 @@ app.get('/', function (req, res) {
 })
 
 app.get('/server/url', function (req, res) {
+	console.log(`server/url no cache`)
     res.send(req.url)
 })
 

@@ -1,1 +1,1 @@
-ab -c 40 -n 1000 http://localhost:9090/
+ab -c 40 -n 1000 http://localhost:9090/${1}
