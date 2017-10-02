@@ -1,0 +1,7 @@
+https://www.youtube.com/watch?v=IKpavoOkhpI
+https://www.youtube.com/watch?v=HxVPYv4f9Qc (pt)
+
+https://www.youtube.com/watch?v=6bXSfjwQVIc
+
+
+https://github.com/deviantony/docker-elk/blob/master/docker-compose.yml
