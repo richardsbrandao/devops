@@ -1,0 +1,33 @@
+Separar em modulos da forma correta
+    https://github.com/icicimov/terraform-vpc/blob/master/main.tf
+    https://icicimov.github.io/blog/devops/Building-VPC-with-Terraform-in-Amazon-AWS/
+    https://simonfredsted.com/1459
+    
+    
+Infra estrutura redundante
+Security Groups para cassandra, mongo, rabbitmq, solr
+Criar um LB para balancear microservicos
+Usar RDS para mysql
+Usar ElasticCache para Redis
+Criar um Nacl que reflita todas as entradas e saidas corretamente
+AutoScaling
+Cloudwatch
+Route53
+
+    # create a LB and connectivity with mysql cassandra rabbit etc, for now allow all
+
+_____________________
+WARNING! Your environment specifies an invalid locale.
+ The unknown environment variables are:
+   LC_CTYPE=pt_BR.UTF-8 LC_ALL=
+ This can affect your user experience significantly, including the
+ ability to manage packages. You may install the locales by running:
+
+   sudo apt-get install language-pack-pt
+     or
+   sudo locale-gen pt_BR.UTF-8
+
+To see all available language packs, run:
+   apt-cache search "^language-pack-[a-z][a-z]$"
+To disable this message for all users, run:
+   sudo touch /var/lib/cloud/instance/locale-check.skip

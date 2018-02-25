@@ -4,6 +4,6 @@ resource "aws_vpc" "herotrip" {
     enable_dns_support = false 
     enable_dns_hostnames = false
     tags {
-        Name = "Herotrip vpc example"
+        Name = "HEROTRIP VPC"
     }
 }
