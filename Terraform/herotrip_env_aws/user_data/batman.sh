@@ -1,5 +1,9 @@
-# Update
-sudo apt-get update -y
+#cloud-boothook
+#!/bin/bash
+
+# Update and Install packages
+apt-get -y update
+apt-get install -y language-pack-pt
 
 # Install Docker
 curl -fsSL get.docker.com -o get-docker.sh
@@ -9,6 +13,5 @@ sh get-docker.sh
 groupadd docker
 usermod -aG docker ubuntu
 
-# Change Hostname
-sed -i 's/ubuntu/batman/g' /etc/hosts
-sed -i 's/ubuntu/batman/g' /etc/hostname
+# Reboot to reload configs
+reboot

@@ -1,6 +1,6 @@
-resource "aws_security_group" "sg_ssh" {
-    name = "Ssh"
-    description = "Enable SSH Connections"
+resource "aws_security_group" "sg_herotrip" {
+    name = "Herotrip"
+    description = "Enable only ssh and application ports"
     vpc_id = "${aws_vpc.herotrip.id}"
     ingress {
         from_port = 22
@@ -8,12 +8,6 @@ resource "aws_security_group" "sg_ssh" {
         protocol = "tcp"
         cidr_blocks = ["0.0.0.0/0"]
     }
-}
-
-resource "aws_security_group" "sg_application" {
-    name = "Application"
-    description = "Enable Only Applications Port"
-    vpc_id = "${aws_vpc.herotrip.id}"
     ingress {
         from_port = 80
         to_port = 80
@@ -26,16 +20,30 @@ resource "aws_security_group" "sg_application" {
         protocol = "tcp"
         cidr_blocks = ["0.0.0.0/0"]
     }
-}
-
-resource "aws_security_group" "sg_traffic" {
-    name =  "Leave Traffic"
-    description = "Enable traffic to leave"
-    vpc_id = "${aws_vpc.herotrip.id}"
     egress {
         from_port = 0
         to_port  = 0
         protocol  = "-1"
         cidr_blocks  = ["0.0.0.0/0"]
+    }
+}
+
+resource "aws_security_group" "sg_mysql" {
+    name = "Mysql"
+    description  = "Enable Mysql connection from vpc"
+    vpc_id = "${aws_vpc.herotrip.id}"
+
+    ingress {
+        from_port = 3306
+        to_port = 3306
+        protocol = "tcp"
+        cidr_blocks = ["${var.vpc_fullcidr}"]
+    }
+
+    egress {
+        from_port = 0
+        to_port = 0
+        protocol = "-1"
+        cidr_blocks = ["0.0.0.0/0"]
     }
 }
