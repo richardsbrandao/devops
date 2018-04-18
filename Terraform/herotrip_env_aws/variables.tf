@@ -40,7 +40,7 @@ variable "ec2_superman_instance_type" {
 }
 
 variable "ec2_ami_instance" {
-  default     = "ami-965e6bf3"
+  default     = "ami-4e79ed36"
   description = "AMI for all services"
 }
 
@@ -56,41 +56,41 @@ variable "user_data_path" {
 # rds
 
 variable "allocated_storage" {
-  default = 20
+  default     = 20
   description = "Allocated storage in GB"
 }
 
 variable "backup_retention_period" {
-  default = 7
+  default     = 7
   description = "Days retention for backup"
 }
 
 variable "engine" {
-  default = "mysql"
+  default     = "mysql"
   description = "Database engine to use"
 }
 
 variable "engine_version" {
-  default = "5.6.39"
+  default     = "5.6.39"
   description = "Version for choosen engine"
 }
 
 variable "instance_class" {
-  default = "db.t2.small"
+  default     = "db.t2.small"
   description = "Instance type of the RDS Instance"
 }
 
 variable "port" {
-  default = 3306
+  default     = 3306
   description = "Database port"
 }
 
 variable "publicly_accessible" {
-  default = false
+  default     = false
   description = "Access type"
 }
 
 variable "storage_type" {
-  default = "gp2"
+  default     = "gp2"
   description = "Storage type (magnet/general purpose SSD/provisioned IOPS SSD)"
 }

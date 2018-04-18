@@ -15,13 +15,13 @@ resource "aws_instance" "batman_a" {
     Role = "Frontend"
   }
 
-  user_data = "${file("${var.user_data_path}/batman.sh")}"
+  # user_data = "${file("${var.user_data_path}/batman.sh")}"
 }
 
 resource "aws_instance" "batman_b" {
   ami                         = "${var.ec2_ami_instance}"
   instance_type               = "${var.ec2_batman_instance_type}"
-  associate_public_ip_address = false
+  associate_public_ip_address = true
   subnet_id                   = "${aws_subnet.public_b.id}"
 
   vpc_security_group_ids = [
@@ -35,7 +35,7 @@ resource "aws_instance" "batman_b" {
     Role = "Frontend"
   }
 
-  user_data = "${file("${var.user_data_path}/batman.sh")}"
+  # user_data = "${file("${var.user_data_path}/batman.sh")}"
 }
 
 resource "aws_instance" "superman_a" {
@@ -55,7 +55,7 @@ resource "aws_instance" "superman_a" {
     Role = "Customer Management"
   }
 
-  user_data = "${file("${var.user_data_path}/superman.sh")}"
+  #user_data = "${file("${var.user_data_path}/superman.sh")}"
 }
 
 resource "aws_instance" "superman_b" {
@@ -75,5 +75,5 @@ resource "aws_instance" "superman_b" {
     Role = "Customer Management"
   }
 
-  user_data = "${file("${var.user_data_path}/superman.sh")}"
+  #user_data = "${file("${var.user_data_path}/superman.sh")}"
 }
