@@ -4,13 +4,37 @@ Separar em modulos da forma correta
     https://simonfredsted.com/1459
     
     
-Security Groups para cassandra, mongo, rabbitmq, solr
 Criar um LB para balancear microservicos
-Usar RDS para mysql
-Usar ElasticCache para Redis
-Criar um Nacl que reflita todas as entradas e saidas corretamente
-AutoScaling
+Criar uma aplicacao React que consuma o serviço de api
+Alterar serviço para fazer upload em um S3
+Terraform criar S3
+
+Terraform AutoScaling
+Terraform Route53
+Terraform Criar um Nacl que reflita todas as entradas e saidas corretamente
 Cloudwatch
-Route53
 
     # create a LB and connectivity with mysql cassandra rabbit etc, for now allow all
+
+
+docker pull richardbrandao/mysqll:latest
+
+docker run -d -p 3100:3100 \
+-e NODE_ENV=production \
+-e DATABASE_HOST=<URL> \
+-e DATABASE_USERNAME=root \
+-e DATABASE_PASSWORD=herotrip \
+-e DATABASE_DATABASE=herotrip \
+-e REDIS_HOST=<URL> \
+-e REDIS_PORT=6379 \
+richardbrandao/mysqll:latest
+
+docker run -it redis bash
+redis-cli -h <URL>
+
+docker run -it mysql bash
+mysql -h <URL> -u root -P
+
+curl -v http://localhost:3100/api/v1/herotrip/service_check
+curl -v http://localhost:3100/api/v1/herotrip/heros
+curl -v http://localhost:3100/api/v1/herotrip/fights
