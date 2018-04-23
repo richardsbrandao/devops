@@ -8,14 +8,14 @@ resource "aws_elasticache_subnet_group" "redis_subnet_group" {
 }
 
 resource "aws_elasticache_cluster" "redis" {
-  cluster_id           = "herotrip-redis"                                          # var
-  engine               = "redis"
-  engine_version       = "3.2.10"                                                  # var
-  maintenance_window   = "sun:05:00-sun:06:00"                                     # var
-  node_type            = "cache.t2.small"
-  num_cache_nodes      = "1"                                                       # var
-  parameter_group_name = "default.redis3.2"
-  port                 = "6379"
+  cluster_id           = "${var.cluster_id}"
+  engine               = "${var.ecache_engine}"
+  engine_version       = "${var.ecache_engine_version}"
+  maintenance_window   = "${var.maintenance_window}"
+  node_type            = "${var.node_type}"
+  num_cache_nodes      = "${var.num_cache_nodes}"
+  parameter_group_name = "${var.group_name}"
+  port                 = "${var.ecache_port}"
   subnet_group_name    = "${aws_elasticache_subnet_group.redis_subnet_group.name}"
   security_group_ids   = ["${aws_security_group.sg_redis.id}"]
 

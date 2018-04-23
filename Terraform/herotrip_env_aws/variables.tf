@@ -65,12 +65,12 @@ variable "backup_retention_period" {
   description = "Days retention for backup"
 }
 
-variable "engine" {
+variable "rds_engine" {
   default     = "mysql"
   description = "Database engine to use"
 }
 
-variable "engine_version" {
+variable "rds_engine_version" {
   default     = "5.6.39"
   description = "Version for choosen engine"
 }
@@ -80,7 +80,7 @@ variable "instance_class" {
   description = "Instance type of the RDS Instance"
 }
 
-variable "port" {
+variable "rds_port" {
   default     = 3306
   description = "Database port"
 }
@@ -105,4 +105,46 @@ variable "superman_protocol" {
 variable "superman_port" {
   default     = 3100
   description = "Superman default application port"
+}
+
+# ecache
+
+variable "cluster_id" {
+  default     = "herotrip-redis"
+  description = "Ecache cluster name"
+}
+
+variable "ecache_engine" {
+  default     = "redis"
+  description = "Ecache engine (memcache|redis)"
+}
+
+variable "ecache_engine_version" {
+  default     = "3.2.10"
+  description = "Ecache version"
+}
+
+variable "maintenance_window" {
+  default     = "sun:05:00-sun:06:00"
+  description = "Ecache maintenance window allowed for aws"
+}
+
+variable "node_type" {
+  default     = "cache.t2.small"
+  description = "Ecache instance type"
+}
+
+variable "num_cache_nodes" {
+  default     = "1"
+  description = "Ecache nodes"
+}
+
+variable "ecache_port" {
+  default     = "6379"
+  description = "Ecache default port"
+}
+
+variable "group_name" {
+  default     = "default.redis3.2"
+  description = "ecache groupname"
 }
