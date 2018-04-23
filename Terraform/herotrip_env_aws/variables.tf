@@ -94,3 +94,15 @@ variable "storage_type" {
   default     = "gp2"
   description = "Storage type (magnet/general purpose SSD/provisioned IOPS SSD)"
 }
+
+# application
+
+variable "superman_protocol" {
+  default     = "HTTP"
+  description = "Superman default protocol"
+}
+
+variable "superman_port" {
+  default     = 3100
+  description = "Superman default application port"
+}
