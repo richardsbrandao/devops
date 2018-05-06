@@ -107,6 +107,16 @@ variable "superman_port" {
   description = "Superman default application port"
 }
 
+variable "batman_protocol" {
+  default     = "HTTP"
+  description = "Batman default protocol"
+}
+
+variable "batman_port" {
+  default     = 3100
+  description = "Batman default application port"
+}
+
 # ecache
 
 variable "cluster_id" {
