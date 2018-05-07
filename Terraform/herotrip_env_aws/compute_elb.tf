@@ -56,28 +56,14 @@ resource "aws_lb_target_group" "batman_target_group" {
   }
 }
 
-resource "aws_lb_target_group_attachment" "superman_a" {
-  target_group_arn = "${aws_lb_target_group.superman_target_group.arn}"
-  target_id        = "${aws_instance.superman_a.id}"
-  port             = "${var.superman_port}"
+resource "aws_autoscaling_attachment" "attach_batmam_to_autoscaling" {
+  autoscaling_group_name = "${aws_autoscaling_group.batman.id}"
+  alb_target_group_arn   = "${aws_lb_target_group.batman_target_group.arn}"
 }
 
-resource "aws_lb_target_group_attachment" "superman_b" {
-  target_group_arn = "${aws_lb_target_group.superman_target_group.arn}"
-  target_id        = "${aws_instance.superman_b.id}"
-  port             = "${var.superman_port}"
-}
-
-resource "aws_lb_target_group_attachment" "batman_a" {
-  target_group_arn = "${aws_lb_target_group.batman_target_group.arn}"
-  target_id        = "${aws_instance.batman_a.id}"
-  port             = "${var.batman_port}"
-}
-
-resource "aws_lb_target_group_attachment" "batman_b" {
-  target_group_arn = "${aws_lb_target_group.batman_target_group.arn}"
-  target_id        = "${aws_instance.batman_b.id}"
-  port             = "${var.batman_port}"
+resource "aws_autoscaling_attachment" "attach_superman_to_autoscaling" {
+  autoscaling_group_name = "${aws_autoscaling_group.superman.id}"
+  alb_target_group_arn   = "${aws_lb_target_group.superman_target_group.arn}"
 }
 
 resource "aws_lb_listener" "superman_http" {
