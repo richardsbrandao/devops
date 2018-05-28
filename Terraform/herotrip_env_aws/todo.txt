@@ -4,37 +4,58 @@ Separar em modulos da forma correta
     https://simonfredsted.com/1459
     
     
-Criar um LB para balancear microservicos
-Criar uma aplicacao React que consuma o serviço de api
+Corrigir UserData
+Ver como criar auto_scaling_policy    
 Alterar serviço para fazer upload em um S3
 Terraform criar S3
-
-Terraform AutoScaling
-Terraform Route53
-Terraform Criar um Nacl que reflita todas as entradas e saidas corretamente
 Cloudwatch
+Refatorar para Modulos
+Route53
+
+Kubernetes
+
+SQS 
+Lambda para gerar thumbnail
 
     # create a LB and connectivity with mysql cassandra rabbit etc, for now allow all
 
 
+sudo apt-get update
+sudo apt-get install -y docker.io
+sudo usermod -aG docker ubuntu
+sudo reboot
+
+
 docker pull richardbrandao/mysqll:latest
+
 
 docker run -d -p 3100:3100 \
 -e NODE_ENV=production \
--e DATABASE_HOST=<URL> \
+-e DATABASE_HOST=herotrip-databases.crik11vooz6g.us-west-2.rds.amazonaws.com \
 -e DATABASE_USERNAME=root \
 -e DATABASE_PASSWORD=herotrip \
 -e DATABASE_DATABASE=herotrip \
--e REDIS_HOST=<URL> \
+-e REDIS_HOST=herotrip-redis.eyocal.0001.usw2.cache.amazonaws.com \
 -e REDIS_PORT=6379 \
 richardbrandao/mysqll:latest
 
+docker run -d -p 3100:3000 \
+-e NODE_ENV=production \
+-e API_ENDPOINT=internal-superman-elb-746189304.us-west-2.elb.amazonaws.com:3100 \
+richardbrandao/frontend-mysqll:latest
+
+
+
+
 docker run -it redis bash
-redis-cli -h <URL>
+redis-cli -h herotrip-redis.eyocal.0001.usw2.cache.amazonaws.com
 
 docker run -it mysql bash
-mysql -h <URL> -u root -P
+mysql -h herotrip-databases.crik11vooz6g.us-west-2.rds.amazonaws.com -u root -p
 
 curl -v http://localhost:3100/api/v1/herotrip/service_check
 curl -v http://localhost:3100/api/v1/herotrip/heros
 curl -v http://localhost:3100/api/v1/herotrip/fights
+
+curl -v http://internal-superman-elb-746189304.us-west-2.elb.amazonaws.com:3100/api/v1/herotrip/heros
+        
