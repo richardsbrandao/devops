@@ -8,8 +8,7 @@ resource "aws_launch_configuration" "batman" {
   security_groups             = ["${aws_security_group.sg_herotrip.id}"]
   associate_public_ip_address = true
 
-  #user_data = ""
-  # iam_instance_profile = ""
+  user_data = "${file("user_data/batman.sh")}"
 
   root_block_device {
     delete_on_termination = "1"
@@ -25,8 +24,7 @@ resource "aws_launch_configuration" "superman" {
   security_groups             = ["${aws_security_group.sg_herotrip.id}"]
   associate_public_ip_address = false
 
-  #user_data = ""
-  # iam_instance_profile = ""
+  user_data = "${file("user_data/superman.sh")}"
 
   root_block_device {
     delete_on_termination = "1"
@@ -82,7 +80,6 @@ resource "aws_autoscaling_group" "superman" {
 }
 
 # Autoscaling Policy
-
 resource "aws_autoscaling_policy" "bataman_policy" {
   name        = "batman_thermostat"
   policy_type = "TargetTrackingScaling"
@@ -98,44 +95,20 @@ resource "aws_autoscaling_policy" "bataman_policy" {
   }
 }
 
-resource "aws_autoscaling_policy" "superman_decrease_policy" {
-  name                   = "superman_decrease_policy"
-  policy_type            = "StepScaling"
+resource "aws_autoscaling_policy" "superman_scale_out_policy" {
+  name                   = "superman_scale_out"
+  policy_type            = "SimpleScaling"
   adjustment_type        = "ChangeInCapacity"
   autoscaling_group_name = "${aws_autoscaling_group.superman.name}"
-
-  step_adjustment {
-    scaling_adjustment          = -1
-    metric_interval_lower_bound = 30
-  }
+  cooldown               = 60
+  scaling_adjustment     = 1
 }
 
-resource "aws_autoscaling_policy" "superman_increase_policy" {
-  name                   = "superman_increase_policy"
-  policy_type            = "StepScaling"
+resource "aws_autoscaling_policy" "superman_scale_in_policy" {
+  name                   = "superman_scale_in"
+  policy_type            = "SimpleScaling"
   adjustment_type        = "ChangeInCapacity"
   autoscaling_group_name = "${aws_autoscaling_group.superman.name}"
-
-  step_adjustment {
-    scaling_adjustment          = 1
-    metric_interval_upper_bound = 30
-  }
-}
-
-resource "aws_cloudwatch_metric_alarm" "superman_cpu_alarm" {
-  alarm_name          = "superman_increase_cpu_alarm LT"
-  comparison_operator = "GreaterThanOrEqualToThreshold"
-  evaluation_periods  = "2"
-  metric_name         = "CPUUtilization"
-  namespace           = "AWS/EC2"
-  period              = "300"
-  statistic           = "Average"
-  threshold           = "80"
-
-  dimensions {
-    AutoScalingGroupName = "${aws_autoscaling_group.superman.name}"
-  }
-
-  alarm_description = "This metric monitors ec2 cpu utilization GT"
-  alarm_actions     = ["${aws_autoscaling_policy.superman_increase_policy.arn}"]
+  cooldown               = 60
+  scaling_adjustment     = -1
 }
