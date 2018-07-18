@@ -1,0 +1,48 @@
+Separar em modulos da forma correta
+    https://github.com/icicimov/terraform-vpc/blob/master/main.tf
+    https://icicimov.github.io/blog/devops/Building-VPC-with-Terraform-in-Amazon-AWS/
+    https://simonfredsted.com/1459
+
+Refatorar para Modulos
+Kubernetes
+
+https://github.com/jonmorehouse/terraform-provisioner-ansible
+
+SQS 
+
+
+docker pull richardbrandao/mysqll:latest
+
+
+docker run -d -p 3100:3100 \
+-e NODE_ENV=production \
+-e DATABASE_HOST=herotrip-databases.crik11vooz6g.us-west-2.rds.amazonaws.com \
+-e DATABASE_USERNAME=root \
+-e DATABASE_PASSWORD=herotrip \
+-e DATABASE_DATABASE=herotrip \
+-e REDIS_HOST=herotrip-redis.eyocal.0001.usw2.cache.amazonaws.com \
+-e REDIS_PORT=6379 \
+richardbrandao/mysqll:latest
+
+docker run -d -p 3100:3000 \
+-e NODE_ENV=production \
+-e API_ENDPOINT=internal-superman-elb-746189304.us-west-2.elb.amazonaws.com:3100 \
+richardbrandao/frontend-mysqll:latest
+
+ docker tag 761f41bf6275 richardbrandao/herotrip:superman
+
+
+
+
+docker run -it redis bash
+redis-cli -h herotrip-redis.eyocal.0001.usw2.cache.amazonaws.com
+
+docker run -it mysql bash
+mysql -h herotrip-databases.crik11vooz6g.us-west-2.rds.amazonaws.com -u root -p
+
+curl -v http://localhost:3100/api/v1/herotrip/service_check
+curl -v http://localhost:3100/api/v1/herotrip/heros
+curl -v http://localhost:3100/api/v1/herotrip/fights
+
+curl -v http://internal-superman-elb-746189304.us-west-2.elb.amazonaws.com:3100/api/v1/herotrip/heros
+        
