@@ -1,0 +1,2 @@
+hello_world_queue_name="hello_world_queue"
+hello_world_dead_letter_name="hello_world_dead_letter_queue"
