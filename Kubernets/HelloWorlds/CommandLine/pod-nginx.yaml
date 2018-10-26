@@ -1,0 +1,93 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: 2018-07-21T23:55:47Z
+  generateName: hello-kubernets-nginx-6db9778596-
+  labels:
+    pod-template-hash: "2865334152"
+    run: hello-kubernets-nginx
+  name: hello-kubernets-nginx-6db9778596-wjh2p
+  namespace: default
+  ownerReferences:
+  - apiVersion: extensions/v1beta1
+    blockOwnerDeletion: true
+    controller: true
+    kind: ReplicaSet
+    name: hello-kubernets-nginx-6db9778596
+    uid: 95da78dd-8d41-11e8-8135-0800270828e5
+  resourceVersion: "28744"
+  selfLink: /api/v1/namespaces/default/pods/hello-kubernets-nginx-6db9778596-wjh2p
+  uid: 96cf4b01-8d41-11e8-8135-0800270828e5
+spec:
+  containers:
+  - image: nginx
+    imagePullPolicy: Always
+    name: hello-kubernets-nginx
+    ports:
+    - containerPort: 80
+      protocol: TCP
+    resources: {}
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: default-token-xbw2r
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  nodeName: minikube
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext: {}
+  serviceAccount: default
+  serviceAccountName: default
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  volumes:
+  - name: default-token-xbw2r
+    secret:
+      defaultMode: 420
+      secretName: default-token-xbw2r
+status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: 2018-07-21T23:55:48Z
+    status: "True"
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: 2018-10-25T01:50:06Z
+    status: "True"
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: 2018-07-21T23:55:47Z
+    status: "True"
+    type: PodScheduled
+  containerStatuses:
+  - containerID: docker://2ce574fb2ec24f0b3d6f11e99b4bd95113a57ab1b1917b3be6f2e7c3041c6a3d
+    image: nginx:latest
+    imageID: docker-pullable://nginx@sha256:b73f527d86e3461fd652f62cf47e7b375196063bbbd503e853af5be16597cb2e
+    lastState:
+      terminated:
+        containerID: docker://3afd49495cfb249d9475d1ca9dd53d7cbbd4c9eb987fce386f703230c32d56f2
+        exitCode: 255
+        finishedAt: 2018-10-25T01:45:25Z
+        reason: Error
+        startedAt: 2018-07-21T23:56:16Z
+    name: hello-kubernets-nginx
+    ready: true
+    restartCount: 1
+    state:
+      running:
+        startedAt: 2018-10-25T01:50:03Z
+  hostIP: 10.0.2.15
+  phase: Running
+  podIP: 172.17.0.4
+  qosClass: BestEffort
+  startTime: 2018-07-21T23:55:48Z
