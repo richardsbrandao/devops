@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: goku
+  labels:
+    app: goku
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: goku
+  template:
+    metadata:
+      labels:
+        app: goku
+    spec:
+      containers:
+      - name: goku
+        image: nginxdemos/hello:plain-text 
+        ports: 
+        - containerPort: 80

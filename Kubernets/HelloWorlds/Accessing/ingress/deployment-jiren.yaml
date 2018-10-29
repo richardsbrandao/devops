@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jiren
+  labels:
+    app: jiren
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jiren
+  template:
+    metadata:
+      labels:
+        app: jiren
+    spec:
+      containers:
+      - name: jiren
+        image: nginxdemos/hello:plain-text 
+        ports: 
+        - containerPort: 80

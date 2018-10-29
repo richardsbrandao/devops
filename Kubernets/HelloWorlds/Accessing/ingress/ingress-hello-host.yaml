@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-hello-world-host
+spec:
+  rules:
+  - host: ingresshello.example.com
+  - http:
+      paths:
+      - path: /goku
+        backend:
+          serviceName: goku-service
+          servicePort: 80
+      - path: /jiren
+        backend:
+          serviceName: jiren-service
+          servicePort: 80
