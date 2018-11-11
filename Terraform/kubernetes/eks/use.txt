@@ -1,0 +1,62 @@
+export AWS_DEFAULT_REGION=us-west-2
+export AWS_SECRET_ACCESS_KEY=<KEY>
+export AWS_ACCESS_KEY_ID=<KEY>
+
+terraform workspace new dev
+terraform init
+
+terraform apply -var-file=dev.tfvars
+
+Apply Configuration
+
+CONFIGURE KUBECTL:
+
+1. Configure aws-ami-authenticator
+    https://docs.aws.amazon.com/pt_br/eks/latest/userguide/configure-kubectl.html
+
+2. Install kubectl
+
+3. Configure PC to access cluster
+$ cd ~
+$ mkdir .kube
+$ cd .kube
+$ touch config-dev-eks 
+$ vim config-dev-eks
+        """
+apiVersion: v1
+clusters:
+- cluster:
+    server: <endpoint-url> https://XXXXXX.sk1.us-west-2.eks.amazonaws.com
+    certificate-authority-data: <base64-encoded-ca-cert> ABCDEFGABCDEFGABCDEFGABCDEFGABCDEFGABCDEFGABCDEFGABCDEFG=
+  name: kubernetes
+contexts:
+- context:
+    cluster: kubernetes
+    user: aws
+  name: aws
+current-context: aws
+kind: Config
+preferences: {}
+users:
+- name: aws
+  user:
+    exec:
+      apiVersion: client.authentication.k8s.io/v1alpha1
+      command: aws-iam-authenticator
+      args:
+        - "token"
+        - "-i"
+        - "<cluster-name>" "dev-eks"
+        # - "-r"
+        # - "<role-arn>"
+      # env:
+        # - name: AWS_PROFILE
+        #   value: "<aws-profile>"
+        """
+
+$ export KUBECONFIG=$KUBECONFIG:~/.kube/config-dev-eks
+
+4. Load Worker Nodes
+    https://docs.aws.amazon.com/pt_br/eks/latest/userguide/add-user-role.html
+
+    rolearn: arn:aws:iam::XXXX:role/dev-eks-node-role
