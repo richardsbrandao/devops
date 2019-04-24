@@ -1,0 +1,16 @@
+{
+  "name": "create_and_mapping_elasticsearch",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "exec": "tsc index.ts && INDEX=serie_a TYPE=matches node index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@elastic/elasticsearch": "^7.0.0-rc.2",
+    "@types/node": "^11.13.6",
+    "typescript": "^3.4.4"
+  }
+}
