@@ -62,26 +62,6 @@ walker.on('file', (root:string, stat, next) => {
 
 walker.on('end', () => {
     for(let i in serieAMatches.matches ) {
+
     }
 });
-
-//parse in classes
-//send to dynamo
-
-// var walk    = require('walk');
-// var files   = [];
-//
-// // Walker options
-// var walker  = walk.walk('./test', { followLinks: false });
-//
-// walker.on('file', function(root, stat, next) {
-//     // Add this file to the list of files
-//     files.push(root + '/' + stat.name);
-//     next();
-// });
-//
-// walker.on('end', function() {
-//     console.log(files);
-// });
-
-//https://www.papaparse.com/
