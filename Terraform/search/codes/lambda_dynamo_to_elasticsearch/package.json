@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "clean": "rm -fR dist dynamo_to_elasticsearch.zip",
+    "tsc": "tsc dynamo_to_elasticsearch.ts serie_a_match.ts --outDir dist",
+    "package": "npm run-script clean && npm run-script tsc && zip -rj dynamo_to_elasticsearch.zip dist"
   },
   "author": "",
   "license": "ISC",

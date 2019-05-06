@@ -1,7 +1,12 @@
-import {SerieAMatch} from "./serie_a_match";
-import { Client } from '@elastic/elasticsearch'
+// import {SerieAMatch} from "./serie_a_match";
+// import { Client } from '@elastic/elasticsearch'
 
-exports.handler = function (event, context, callback) {
-    // new Client({})
-    context.succeed('hello world ');
+exports.handler = async (event, context) => {
+    console.log('Received event:', JSON.stringify(event, null, 2));
+    event.Records.forEach((record) => {
+        console.log(record.eventID);
+        console.log(record.eventName);
+        console.log('DynamoDB Record: %j', record.dynamodb);
+    });
+    return `Successfully processed ${event.Records.length} records.`;
 };
