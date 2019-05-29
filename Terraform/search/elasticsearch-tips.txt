@@ -1,0 +1,56 @@
+https://search-serie-a-fey7ulqf2bsqlese4eeiqjaa4u.eu-west-1.es.amazonaws.com/_cluster/health/
+
+
+https://search-serie-a-fey7ulqf2bsqlese4eeiqjaa4u.eu-west-1.es.amazonaws.com/serie-a/_mapping
+https://search-serie-a-fey7ulqf2bsqlese4eeiqjaa4u.eu-west-1.es.amazonaws.com/_all/_mapping
+
+
+curl -X DELETE https://search-serie-a-fey7ulqf2bsqlese4eeiqjaa4u.eu-west-1.es.amazonaws.com/serie-a
+curl -X PUT "https://search-serie-a-fey7ulqf2bsqlese4eeiqjaa4u.eu-west-1.es.amazonaws.com/serie-a"
+
+
+
+
+
+curl -X PUT "https://search-serie-a-fey7ulqf2bsqlese4eeiqjaa4u.eu-west-1.es.amazonaws.com/serie-a" -H 'Content-Type: application/json' -d'
+{
+    "settings" : {
+        "number_of_shards" : 1
+    },
+    "mappings" : {
+	    "matches": {
+	        "properties" : {
+			    "match_date": { "type": "text" },
+			    "home": { "type": "text" },
+			    "away": { "type": "text" },
+			    "score_first_half": { "type": "text" },
+			    "final_score": { "type": "text" },
+			    "season": { "type": "text" }
+			}
+	    }
+    }
+}
+'
+
+
+
+
+curl -X PUT "https://search-serie-a-fey7ulqf2bsqlese4eeiqjaa4u.eu-west-1.es.amazonaws.com/serie-a/matches/1" -H 'Content-Type: application/json' -d'
+{
+    "match_date": "aaa",
+    "home": "asd",
+    "away": "fs",
+    "score_first_half": "d",
+    "final_score": "a",
+    "season": "a"
+}
+'
+
+
+https://search-serie-a-fey7ulqf2bsqlese4eeiqjaa4u.eu-west-1.es.amazonaws.com/serie-a/_search?q=*:*
+
+https://search-serie-a-fey7ulqf2bsqlese4eeiqjaa4u.eu-west-1.es.amazonaws.com/serie-a/_search?q=match_date:aaaa (NO_RESULT)
+https://search-serie-a-fey7ulqf2bsqlese4eeiqjaa4u.eu-west-1.es.amazonaws.com/serie-a/_search?q=match_date:aaa (SUCCESS)
+
+
+HOST=https://search-serie-a-fey7ulqf2bsqlese4eeiqjaa4u.eu-west-1.es.amazonaws.com
