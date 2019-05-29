@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "exec": "tsc index.ts && INDEX=serie_a TYPE=matches node index.js"
+    "compile": "tsc index.ts",
+    "exec": "INDEX=serie-a TYPE=matches node index.js"
   },
   "author": "",
   "license": "ISC",

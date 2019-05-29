@@ -3,9 +3,8 @@ import { Client } from '@elastic/elasticsearch'
 class CreateAndMappingElasticSearch {
     readonly client: Client;
 
-    constructor({protocol, host, port}) {
-        const node:string = `${protocol}://${host}:${port}`;
-        this.client = new Client({node})
+    constructor(host) {
+        this.client = new Client({node: host})
     }
 
     async delete(index: string) {
@@ -34,7 +33,7 @@ class CreateAndMappingElasticSearch {
         console.log(`Mapping Index[${index}] Type[${type}]`)
         try {
             // Remove Deprecation warning
-            const response = await this.client.indices.putMapping({ index, type, body: { properties: schema }, include_type_name: true })
+            const response = await this.client.indices.putMapping({ index, type, body: { properties: schema }})
             console.log(response)
             console.log(`Mapped Index[${index}] Type[${type}]`)
         } catch(err) {
@@ -43,9 +42,7 @@ class CreateAndMappingElasticSearch {
     }
 }
 
-const protocol = process.env.PROTOCOL || "http" ;
-const host = process.env.HOST || "localhost";
-const port = process.env.PORT || "9200";
+const host = process.env.HOST || "http://localhost:9200";
 const index = process.env.INDEX;
 const type = process.env.TYPE;
 
@@ -58,12 +55,13 @@ const schema =  {
     home: { type: 'text' },
     away: { type: 'text' },
     score_first_half: { type: 'text' },
-    final_score: { type: 'text' }
+    final_score: { type: 'text' },
+    season: { type: 'text' }
 };
-const params = JSON.stringify({ protocol, host, port, index, type });
+const params = JSON.stringify({ host, index, type });
 console.log(`Params: ${params}`);
 
-const cmes = new CreateAndMappingElasticSearch({protocol, host, port});
+const cmes = new CreateAndMappingElasticSearch(host);
 cmes.delete(index)
     .then(() => cmes.create(index))
     .then(() => cmes.mapping(index, type, schema));

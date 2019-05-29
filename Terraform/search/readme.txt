@@ -31,4 +31,7 @@ Criteria of searches to aim:
     By Matches (Home, Away, All)
     ...
 
+create_and_mapping_elasticsearch: HOST=https://search-serie-a-fey7ulqf2bsqlese4eeiqjaa4u.eu-west-1.es.amazonaws.com npm run-script exec
+dataset_to_dynamo: DYNAMODB_TABLE=serie_a_history npm run-script start
+
 

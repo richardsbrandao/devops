@@ -1,4 +1,5 @@
 export class SerieAMatch {
+    readonly id: string;
     readonly season: string;
     readonly home: string;
     readonly away: string;
@@ -6,7 +7,8 @@ export class SerieAMatch {
     readonly half_time: string;
     readonly final_score: string;
 
-    constructor({home, away, date, half_time, final_score, season}) {
+    constructor({id, home, away, date, half_time, final_score, season}) {
+        this.id = id;
         this.home = home;
         this.away = away;
         this.date = date;
