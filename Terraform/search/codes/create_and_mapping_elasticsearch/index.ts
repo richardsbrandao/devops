@@ -51,12 +51,12 @@ if(!type || !index) {
 }
 
 const schema =  {
-    match_date: { type: 'date' },
-    home: { type: 'text' },
-    away: { type: 'text' },
-    score_first_half: { type: 'text' },
-    final_score: { type: 'text' },
-    season: { type: 'text' }
+    match_date: { type: 'date', fields: { type: "keyword" } },
+    home: { type: 'text', fields: { type: "keyword" } },
+    away: { type: 'text', fields: { type: "keyword" } },
+    score_first_half: { type: 'text', fields: { type: "keyword" } },
+    final_score: { type: 'text', fields: { type: "keyword" } },
+    season: { type: 'text', fields: { type: "keyword" } }
 };
 const params = JSON.stringify({ host, index, type });
 console.log(`Params: ${params}`);
