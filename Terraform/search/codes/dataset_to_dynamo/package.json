@@ -12,7 +12,7 @@
   "dependencies": {
     "@types/node": "^11.13.7",
     "aws-sdk": "^2.464.0",
-    "papaparse": "^4.6.3",
+    "papaparse": "^5.2.0",
     "uuid": "^3.3.2",
     "walk": "^2.3.14"
   }
